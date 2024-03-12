@@ -1,4 +1,4 @@
-package theory.DFS;
+package algorithm.DFS;
 
 import java.util.ArrayList;
 

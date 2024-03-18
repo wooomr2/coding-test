@@ -1,10 +1,8 @@
 namespace bubble {
   function bubbleSort(arr: number[]): number[] {
-    const n = arr.length;
-
     // 배열을 순회하며 인접한 요소를 비교하여 정렬합니다.
-    for (let i = 0; i < n - 1; i++) {
-      for (let j = 0; j < n - i - 1; j++) {
+    for (let i = 0; i < arr.length - 1; i++) {
+      for (let j = 0; j < arr.length - i - 1; j++) {
         // 현재 요소와 다음 요소를 비교하여 순서가 잘못되어 있다면 교환합니다.
         if (arr[j] > arr[j + 1]) {
           // 임시 변수를 사용하여 요소를 교환합니다.

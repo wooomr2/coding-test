@@ -4,8 +4,7 @@ namespace merge {
       return arr;
     }
 
-    const mid = arr.length / 2;
-    const left = arr.splice(0, mid);
+    const left = arr.splice(0, arr.length / 2);
 
     return merge(mergeSort(left), mergeSort(arr));
   }

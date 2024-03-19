@@ -1,37 +1,34 @@
 namespace heap {
   export function heapSort(arr: number[]) {
-    const len = arr.length;
-    let end = len - 1;
+    let endIndex = arr.length - 1;
 
-    heapify(arr, len);
-
-    while (end > 0) {
-      swap(arr, end--, 0);
-      siftDown(arr, 0, end);
+    let midIndex = Math.floor((endIndex - 1) / 2);
+    while (midIndex >= 0) {
+      shiftDown(arr, midIndex--, endIndex);
     }
+
+    while (endIndex > 0) {
+      swap(arr, endIndex--, 0);
+      shiftDown(arr, 0, endIndex);
+    }
+
     return arr;
   }
 
-  function heapify(arr: number[], len: number) {
-    let mid = Math.floor((len - 2) / 2); // 부모 노드 index(Math.floor((index - 1) / 2))
-    while (mid >= 0) {
-      siftDown(arr, mid--, len - 1);
-    }
-  }
+  function shiftDown(arr: number[], midIndex: number, endIndex: number) {
+    let currentIndex = midIndex;
+    let leftIndex = currentIndex * 2 + 1;
+    let rightIndex = currentIndex * 2 + 2;
 
-  function siftDown(arr: number[], start: number, end: number) {
-    let currentIndex = start;
-    let left = currentIndex * 2 + 1; // 왼쪽 자식노드 index
-    let right = currentIndex * 2 + 2; // 오른쪽 자식노드 index
-    while (left <= end) {
-      let largest = currentIndex; // parent노드의 index를 먼저 할당
+    while (leftIndex <= endIndex) {
+      let largest = currentIndex;
 
-      if (arr[largest] < arr[left]) {
-        largest = left;
+      if (arr[largest] < arr[leftIndex]) {
+        largest = leftIndex;
       }
 
-      if (right <= end && arr[largest] < arr[right]) {
-        largest = right;
+      if (rightIndex <= endIndex && arr[largest] < arr[rightIndex]) {
+        largest = rightIndex;
       }
 
       if (largest === currentIndex) {
@@ -39,8 +36,9 @@ namespace heap {
       }
 
       swap(arr, currentIndex, largest);
+
       currentIndex = largest;
-      left = currentIndex * 2 + 1;
+      leftIndex = currentIndex * 2 + 1;
     }
   }
 

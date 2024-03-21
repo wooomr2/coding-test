@@ -24,20 +24,3 @@ namespace quick {
   const sortedArray: number[] = quickSort(exampleArray);
   console.log("정렬된 배열:", sortedArray); // 출력: [ 11, 12, 22, 25, 34, 64, 90 ]
 }
-
-function quickSort(arr: number[]): number[] {
-  if (arr.length < 2) {
-    return arr;
-  }
-
-  const pivotIndex = Math.floor(arr.length / 2);
-  const pivot = arr.splice(pivotIndex, 1)[0];
-
-  const left: number[] = [];
-  const right: number[] = [];
-  for (const n of arr) {
-    n < pivot ? left.push(n) : right.push(n);
-  }
-
-  return [...quickSort(left), pivot, ...quickSort(right)]
-}
